@@ -1,100 +1,157 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>🔥 편지 🔥</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Black+Han+Sans&family=Creepster&display=swap');
+<meta charset="UTF-8" />
+<title>🔥 협업 지옥 + 귀신 경고 편지 🔥</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Black+Han+Sans&family=Creepster&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: radial-gradient(#1a0000, #000);
-      color: #fff;
-      font-family: 'Black Han Sans', 'Creepster', 'Dokdo', sans-serif;
-      overflow-x: hidden;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: radial-gradient(#1a0000, #000);
+    font-family: 'Creepster', 'Dokdo', 'Black Han Sans', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    height: 100vh;
+    position: relative;
+  }
 
-    .banner {
-      background: #300;
-      padding: 15px;
-      text-align: center;
-      color: #ff5050;
-      font-size: 24px;
-      font-family: 'Dokdo', sans-serif;
-      border-bottom: 2px solid #ff0000;
-      box-shadow: 0 0 10px red;
-      animation: shake 0.3s infinite alternate;
-    }
+  .flames {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background: url('https://i.imgur.com/azF7pYb.gif') repeat-x;
+    background-size: cover;
+    z-index: 0;
+  }
 
-    @keyframes shake {
-      from { transform: rotate(-0.5deg); }
-      to { transform: rotate(0.5deg); }
-    }
+  .click-letter {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    max-width: 600px;
+    border: 2px solid crimson;
+    box-shadow: 0 0 30px rgba(255, 60, 0, 0.8);
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    margin: 60px auto 0;
+  }
+  .click-letter:hover {
+    transform: scale(1.05);
+  }
+  .click-letter.exploded {
+    animation: explode 0.6s forwards;
+  }
+  @keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2) rotate(5deg); opacity: 0.5; }
+    100% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  }
 
-    .fire-container {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(to top, #ff3300 10%, transparent 40%);
-      display: flex;
-      justify-content: center;
-      padding-top: 40px;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-    }
+  .real-letter {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    max-width: 720px;
+    margin: 30px auto 0;
+    border: 2px solid orange;
+    box-shadow: 0 0 30px rgba(255, 150, 0, 0.8);
+    display: none;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+    z-index: 20;
+  }
+  .real-letter.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .real-letter p {
+    margin-bottom: 14px;
+    line-height: 1.8;
+    font-size: 18px;
+  }
 
-    .flames {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 150px;
-      background: url('https://i.imgur.com/azF7pYb.gif') repeat-x;
-      background-size: cover;
-      z-index: 0;
-    }
+  .ghost {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 150px;
+    transform: translateX(-50%);
+    animation: floatGhost 6s ease-in-out infinite;
+    cursor: default;
+    z-index: 15;
+  }
+  @keyframes floatGhost {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -30px); }
+  }
 
-    .letter {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 30px;
-      max-width: 720px;
-      border: 2px solid #ff6a00;
-      box-shadow: 0 0 30px rgba(255, 60, 0, 0.6);
-      margin-bottom: 50px;
-      position: relative;
-      z-index: 10;
-    }
+  .speech-bubble {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: rgba(255, 0, 0, 0.8);
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    pointer-events: none;
+    color: #fff;
+    filter: drop-shadow(0 0 5px red);
+    user-select: none;
+    animation: bubblePop 0.5s forwards;
+    z-index: 20;
+  }
+  @keyframes bubblePop {
+    to { transform: translateX(-50%) scale(1); }
+  }
+  .speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: rgba(255,0,0,0.8) transparent transparent transparent;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ff6347;
-      font-size: 32px;
-    }
-
-    .letter p {
-      line-height: 1.9;
-      margin-bottom: 18px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.6s ease-out;
-    }
-
-    .letter p.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  .flash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: white;
+    opacity: 0;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .flash.active {
+    animation: flashEffect 0.3s;
+  }
+  @keyframes flashEffect {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- 배너 -->
-  <div class="banner">🔥 THIS IS COLLABORATION OF HELL 🔥<br>we go into fire. together. forever.</div>
-
   <div class="fire-container">
-    <div class="letter" id="hellMessage">
-      <h1>백엔드 팀장에게 보내는 편지</h1>
-      <!-- 문단 하나하나에 등장 애니메이션 효과 적용됨 -->
+
+    <div class="click-letter" id="triggerLetter">
+      <h1>👁‍🗨 클릭하지 마시오</h1>
+      <p>이 편지를 클릭하면... ㅋ</p>
+    </div>
+
+    <div class="real-letter" id="finalLetter">
+      <h1>🔥 백엔드 팀장에게 보내는 편지 🔥</h1>
+      <p>안녕하세요.</p>
       <p>이번 프로젝트는 협업이라는 전제 아래 시작되었고, 저희 프론트엔드 팀도 그에 맞춰 최선을 다해 작업에 임해왔습니다.</p>
       <p>특히 이번 결과물을 각자의 포트폴리오로 활용하기 위해서 모든 구성과 결과물이 실제 서비스처럼 보이도록 신경 써서 만들었습니다.</p>
       <p>그래서 최종적으로 백엔드와 연결된 형태의 결과물(URL)이 제공될 거라고 믿고 작업해왔고, 이 또한 협업의 기본이라고 생각했습니다.</p>
@@ -110,29 +167,54 @@
       <p>부디 앞으로의 협업에선 이런 부분들이 더 잘 고려되어 서로가 노력한 만큼 존중받고, 결과로 이어질 수 있었으면 좋겠습니다.</p>
       <p>긴 글 읽어주셔서 안 감사합니다.</p>
     </div>
-    <div class="flames"></div>
+
+    <img src="ghost.png" alt="귀신" class="ghost" />
+
+    <!-- <div class="flames"></div> -->
+
+    <div class="flash" id="flash"></div>
   </div>
 
-  <!-- 🔥 불꽃 사운드 -->
   <audio autoplay loop>
     <source src="https://cdn.pixabay.com/audio/2021/09/21/audio_6c0874b9cb.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="boomSound">
+    <source src="https://cdn.pixabay.com/audio/2022/03/30/audio_6ab173c7f3.mp3" type="audio/mpeg">
   </audio>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    // 스크롤 시 하나씩 등장
-    $(window).on('scroll', function(){
-      $('.letter p').each(function(){
-        var top_of_element = $(this).offset().top;
-        var bottom_of_screen = $(window).scrollTop() + $(window).height();
-        if (bottom_of_screen > top_of_element + 20) {
-          $(this).addClass('visible');
-        }
+    $(function(){
+      // 말풍선 요소 생성 및 숨김
+      const $bubble = $('<div class="speech-bubble" style="display:none;">너의 협업은 실패했다...</div>').appendTo('body');
+
+      // 3초 후 말풍선 보임
+      setTimeout(() => {
+        $bubble.fadeIn(500);
+      }, 3000);
+
+      // 7초 간격으로 깜빡임 반복
+      setInterval(() => {
+        $bubble.fadeOut(1000).delay(2000).fadeIn(1000);
+      }, 7000);
+
+      // 클릭 이벤트
+      $('#triggerLetter').on('click', function(){
+        $(this).addClass('exploded');
+        $('#flash').addClass('active');
+        $('#boomSound')[0].play();
+
+        $('.ghost').fadeOut(800); // 유령 사라지게!
+
+        setTimeout(() => {
+          $('#finalLetter').addClass('show');
+        }, 700);
+
+        setTimeout(() => {
+          $('#flash').removeClass('active');
+        }, 300);
       });
     });
-
-    // 처음 로드될 때도 일부 보이게
-    $(window).trigger('scroll');
   </script>
 </body>
 </html>
