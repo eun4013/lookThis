@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔥 편지 🔥</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Black+Han+Sans&family=Creepster&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(#1a0000, #000);
+      color: #fff;
+      font-family: 'Black Han Sans', 'Creepster', 'Dokdo', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .banner {
+      background: #300;
+      padding: 15px;
+      text-align: center;
+      color: #ff5050;
+      font-size: 24px;
+      font-family: 'Dokdo', sans-serif;
+      border-bottom: 2px solid #ff0000;
+      box-shadow: 0 0 10px red;
+      animation: shake 0.3s infinite alternate;
+    }
+
+    @keyframes shake {
+      from { transform: rotate(-0.5deg); }
+      to { transform: rotate(0.5deg); }
+    }
+
+    .fire-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(to top, #ff3300 10%, transparent 40%);
+      display: flex;
+      justify-content: center;
+      padding-top: 40px;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .flames {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: url('https://i.imgur.com/azF7pYb.gif') repeat-x;
+      background-size: cover;
+      z-index: 0;
+    }
+
+    .letter {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      max-width: 720px;
+      border: 2px solid #ff6a00;
+      box-shadow: 0 0 30px rgba(255, 60, 0, 0.6);
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff6347;
+      font-size: 32px;
+    }
+
+    .letter p {
+      line-height: 1.9;
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    .letter p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 배너 -->
+  <div class="banner">🔥 THIS IS COLLABORATION OF HELL 🔥<br>we go into fire. together. forever.</div>
+
+  <div class="fire-container">
+    <div class="letter" id="hellMessage">
+      <h1>백엔드 팀장에게 보내는 편지</h1>
+      <!-- 문단 하나하나에 등장 애니메이션 효과 적용됨 -->
+      <p>이번 프로젝트는 협업이라는 전제 아래 시작되었고, 저희 프론트엔드 팀도 그에 맞춰 최선을 다해 작업에 임해왔습니다.</p>
+      <p>특히 이번 결과물을 각자의 포트폴리오로 활용하기 위해서 모든 구성과 결과물이 실제 서비스처럼 보이도록 신경 써서 만들었습니다.</p>
+      <p>그래서 최종적으로 백엔드와 연결된 형태의 결과물(URL)이 제공될 거라고 믿고 작업해왔고, 이 또한 협업의 기본이라고 생각했습니다.</p>
+      <p>저희는 예정된 일정대로 지난주 수요일에 결과물을 전달드렸고, 이후 통합작업이 진행되었다는 이야기를 들었습니다.</p>
+      <p>그런데 발표를 30분 앞둔 시점에 갑자기 트래픽 과금 문제로 URL 공유는 어렵다는 말씀을 듣게 되어 당황스럽고 솔직히 납득하기 어렵습니다.</p>
+      <p>물론 기술적인 제한이 생길 수 있다는 건 이해합니다. 다만, 그런 문제는 미리 공유하고 대안을 함께 고민할 수 있는 여지를 주셨어야 하지 않나 생각합니다.</p>
+      <p>협업이란 게 단순히 작업을 나눠 맡고 각자 결과만 내는 게 아니라, 진행 중 발생하는 문제들을 서로 이야기하고 조율해가며 같이 해결해나가는 과정이라고 생각하거든요.</p>
+      <p>다른 팀들은 직접 교류하고 의견을 나누며 문제를 풀어나가는 걸 자주 봐왔는데, 저희 팀은 거의 대부분의 상황에서 일방적인 전달만 받는 구조였고, 진행 상황이나 통합 상태에 대한 설명이나 피드백도 부족해서 솔직히 많이 답답했습니다.</p>
+      <p>그리고 이전부터 몇 차례 있었던 메시지에서 저희 작업의 의미를 가볍게 여기거나, 상대에 대한 배려가 부족하게 느껴지는 표현들도 반복적으로 보였습니다.</p>
+      <p>의도하지 않으셨을 수는 있지만, “보람 없는 재능기부”, “그걸 포트폴리오로 어떻게 쓰시려고요? ㅎㅎ”, 또는 개인 프로필 상태메시지에서 언급된 표현들(예: 지팔지꼰 등)은 협업을 함께한 팀원 입장에서 결코 가볍게 넘길 수 없는 말들이었습니다.</p>
+      <p>저희가 바란 건 그저 책임감 있는 협업이었고, 중간중간 소통하며 마무리까지 서로의 작업이 존중받는 과정이었습니다.</p>
+      <p>이 프로젝트가 누군가에겐 그냥 하나의 과제일 수 있지만, 누군가에겐 앞으로의 진로와 연결되는 중요한 포트폴리오이기도 합니다.</p>
+      <p>부디 앞으로의 협업에선 이런 부분들이 더 잘 고려되어 서로가 노력한 만큼 존중받고, 결과로 이어질 수 있었으면 좋겠습니다.</p>
+      <p>긴 글 읽어주셔서 안 감사합니다.</p>
+    </div>
+    <div class="flames"></div>
+  </div>
+
+  <!-- 🔥 불꽃 사운드 -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2021/09/21/audio_6c0874b9cb.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // 스크롤 시 하나씩 등장
+    $(window).on('scroll', function(){
+      $('.letter p').each(function(){
+        var top_of_element = $(this).offset().top;
+        var bottom_of_screen = $(window).scrollTop() + $(window).height();
+        if (bottom_of_screen > top_of_element + 20) {
+          $(this).addClass('visible');
+        }
+      });
+    });
+
+    // 처음 로드될 때도 일부 보이게
+    $(window).trigger('scroll');
+  </script>
+</body>
+</html>
